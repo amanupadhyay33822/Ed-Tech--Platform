@@ -28,7 +28,7 @@ function SignupForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const { firstName, lastName, email, password, confirmPassword } = formData
-
+const [File,setFile]=useState();
   // Handle input fields, when some value changes
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
@@ -36,7 +36,12 @@ function SignupForm() {
       [e.target.name]: e.target.value,
     }))
   }
-
+const handleImageUpload = (e) => {
+  console.log(e.target.files[0])
+  setFile(URL.createObjectURL(e.target.files[0]))
+  //  setselectFile(e.target.files);
+}
+// console.log(selectFile)
   // Handle Form Submission
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -139,6 +144,24 @@ function SignupForm() {
             }}
             className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
           />
+        </label>
+        <label className="w-full">
+          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            Image <sup className="text-pink-200">*</sup>
+          </p>
+          <input
+            required
+            type="file"
+            name="image"
+            // value={email}
+            onChange={handleImageUpload}
+            
+            style={{
+              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+            }}
+            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+          />
+          <img src={File}></img>
         </label>
         <div className="flex gap-x-4">
           <label className="relative">

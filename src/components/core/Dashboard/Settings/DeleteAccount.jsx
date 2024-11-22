@@ -10,11 +10,11 @@ export default function DeleteAccount() {
   const navigate = useNavigate()
 
   async function handleDeleteAccount() {
-    // try {
-    //   dispatch(deleteProfile(token, navigate))
-    // } catch (error) {
-    //   console.log("ERROR MESSAGE - ", error.message)
-    // }
+    try {
+      dispatch(deleteProfile(token, navigate))
+    } catch (error) {
+      console.log("ERROR MESSAGE - ", error.message)
+    }
   }
 
   return (
@@ -36,7 +36,7 @@ export default function DeleteAccount() {
           </div>
           <button
             type="button"
-            className="w-fit italic text-pink-300 cursor-not-allowed"
+            className="w-fit italic text-pink-300 cursor-pointer"
             onClick={handleDeleteAccount}
           >
             I want to delete my account.
