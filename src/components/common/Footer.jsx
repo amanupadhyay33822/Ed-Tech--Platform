@@ -174,7 +174,7 @@ const Footer = () => {
             })}
           </div>
 
-          <div className="text-center">Made with ❤️ by Aman © 2023 Exam Easy</div>
+          <div className="text-center"> © 2024 Exam Easy</div>
         </div>
       </div>
     </div>
