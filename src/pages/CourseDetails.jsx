@@ -107,8 +107,12 @@ function CourseDetails() {
   const handleBuyCourse = () => {
     if (token) {
       buyCourse(token, [courseId], user, navigate, dispatch)
+    // console.log("buy course -2" )
+
       return
     }
+   
+
     setConfirmationModal({
       text1: "You are not logged in!",
       text2: "Please login to Purchase Course.",
@@ -118,6 +122,7 @@ function CourseDetails() {
       btn2Handler: () => setConfirmationModal(null),
     })
   }
+  // console.log("buy course-2 " + token)
 
   const handleAddToCart = () => {
     if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
@@ -197,7 +202,7 @@ function CourseDetails() {
                 Rs. {price}
               </p>
               <button className="yellowButton" onClick={handleBuyCourse}>
-                Buy Now
+                Buy Now 
               </button>
               <button onClick={handleAddToCart} className="blackButton">Add to Cart</button>
             </div>

@@ -41,6 +41,9 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
                                 {
                                     Authorization: `Bearer ${token}`,
                                 })
+                               
+        
+
 
         if(!orderResponse.data.success) {
             throw new Error(orderResponse.data.message);
@@ -49,7 +52,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
         // console.log("PRINTING process.env.RAZORPAY_KEY", process.env.RAZORPAY_KEY);
         //options
         const options = {
-            key: process.env.RAZORPAY_KEY,
+            key: process.env.REACT_APP_RAZORPAY_KEY,
             currency: orderResponse.data.message.currency,
             amount: `${orderResponse.data.message.amount}`,
             order_id:orderResponse.data.message.id,
@@ -61,12 +64,14 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
                 email:userDetails.email
             },
             handler: function(response) {
+                console.log("function-1")
                 //send successful wala mail
                 sendPaymentSuccessEmail(response, orderResponse.data.message.amount,token );
                 //verifyPayment
                 verifyPayment({...response, courses}, token, navigate, dispatch);
             }
         }
+        console.log("PRINTING options", options);
         //miss hogya tha 
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();

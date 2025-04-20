@@ -37,7 +37,6 @@ exports.capturePayment = async(req, res) => {
             totalAmount += course.price;
         }
         catch(error) {
-            console.log(error);
             return res.status(500).json({success:false, message:error.message});
         }
     }
@@ -49,7 +48,11 @@ exports.capturePayment = async(req, res) => {
     }
 
     try{
+    
+
         const paymentResponse = await instance.orders.create(options);
+  
+
         res.json({
             success:true,
             message:paymentResponse,
@@ -57,7 +60,7 @@ exports.capturePayment = async(req, res) => {
     }
     catch(error) {
         console.log(error);
-        return res.status(500).json({success:false, mesage:"Could not Initiate Order"});
+        return res.status(500).json({success:false, mesage:error.message});
     }
 
 }
